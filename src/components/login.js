@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import LockIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
-import profile from './profile';
+import profile from './Profile';
 import { Link } from "react-router-dom";
 const styles = {
   main: {
@@ -121,7 +121,7 @@ class Login extends Component {
                 gutterBottom
               >
                 Don't have an account ?{" "}
-                <Link style={{ textDecoration: "none" }} to="/registerStudent">
+                <Link style={{ textDecoration: "none" }} to="/register">
                   Register
                 </Link>
               </Typography>

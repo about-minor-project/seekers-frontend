@@ -1,4 +1,3 @@
-
 import React, { Component } from "react";
 import {
   Avatar,
@@ -9,12 +8,9 @@ import {
   InputLabel,
   Paper,
   Typography,
-  CircularProgress
-
 } from "@material-ui/core";
 import PersonIcon from "@material-ui/icons/Person";
 import { Link } from "react-router-dom";
-
 
 const styles = {
   main: {
@@ -106,7 +102,7 @@ class SignUp extends Component {
               Register
             </Typography>
             <form style={styles.form}>
-              {/* Full name */}
+              {/* first name */}
               <FormControl margin="normal" required fullWidth>
                 <InputLabel htmlFor="fname">First Name</InputLabel>
                 <Input

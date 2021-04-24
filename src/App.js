@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import SignUp from './components/signup';
-import SignIn from './components/login';
-import profile from './components/profile';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import SignUp from "./components/Signup";
+import Login from "./components/Login";
+import Profile from "./components/Profile";
+import NavBar from "./components/NavBar";
+
 const styles = {
   main: {
     backgroundColor: "#282c34",
@@ -14,20 +16,16 @@ const styles = {
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
-    position: "relative"
-  }
+    position: "relative",
+  },
 };
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loggedIn: null,
-      loading: false
+      loading: false,
     };
-
-
-
-
   }
   renderContent = () => {
     if (this.state.loggedIn === false) {
@@ -38,22 +36,28 @@ class App extends Component {
       );
     } else {
       return (
-        <div style={{ alignItems: 'center', justifyContent: 'center', minHeight: '100vh', display: 'flex' }}>
-
-          <SignIn />
+        <div
+          style={{
+            alignItems: "center",
+            justifyContent: "center",
+            minHeight: "100vh",
+            display: "flex",
+          }}
+        >
+          <Login />
         </div>
       );
     }
   };
 
   render() {
-
     return (
       <Router>
+        <NavBar/>
         <Switch>
           <Route exact path="/" component={this.renderContent} />
-          <Route exact path="/registerStudent" component={SignUp} />
-          <Route exact path="/profile" component={profile} />
+          <Route exact path="/register" component={SignUp} />
+          <Route exact path="/profile" component={Profile} />
         </Switch>
       </Router>
     );
