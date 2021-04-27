@@ -13,9 +13,10 @@ import PersonIcon from "@material-ui/icons/Person";
 import { Link } from "react-router-dom";
 
 const styles = {
+  
   main: {
     backgroundColor: "white",
-    minHeight: "100vh",
+    minHeight: "90vh",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -47,7 +48,7 @@ const styles = {
     backgroundColor: "orange"
   },
   form: {
-    width: "auto", // Fix IE 11 issue.
+    width: "auto", 
     marginTop: 8
   },
   submit: {
@@ -94,7 +95,7 @@ class SignUp extends Component {
       <div style={styles.main}>
         <main style={styles.mainForm}>
           <CssBaseline />
-          <Paper style={styles.paper} elevation={24}>
+          <Paper style={styles.paper} elevation={20}>
             <Avatar style={styles.avatar}>
               <PersonIcon />
             </Avatar>
@@ -137,7 +138,7 @@ class SignUp extends Component {
 
               {/* Password */}
               <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="password">Passwrd</InputLabel>
+                <InputLabel htmlFor="password">Password</InputLabel>
                 <Input
                   name="password"
                   type="password"

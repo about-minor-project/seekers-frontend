@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import SignUp from "./components/Signup";
-import Login from "./components/Login";
-import Profile from "./components/Profile";
-import NavBar from "./components/NavBar";
+import SignUp from "./components/signup";
+import Login from "./components/login";
+import Profile from "./components/profile";
 
 const styles = {
   main: {
@@ -17,7 +16,10 @@ const styles = {
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     position: "relative",
+    overflow: "hidden"
+    
   },
+
 };
 class App extends Component {
   constructor(props) {
@@ -53,7 +55,6 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <NavBar/>
         <Switch>
           <Route exact path="/" component={this.renderContent} />
           <Route exact path="/register" component={SignUp} />

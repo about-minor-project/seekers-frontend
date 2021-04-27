@@ -10,7 +10,6 @@ import {
 } from "@material-ui/core";
 import LockIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
-import profile from './Profile';
 import { Link } from "react-router-dom";
 const styles = {
   main: {
@@ -107,7 +106,7 @@ class Login extends Component {
                 onChange={e => this.setState({ password: e.target.value })}
               />
             </FormControl>
-            <Link style={{ textDecoration: "none", color: "white" }} to="/profile">
+            <Link style={{ textDecoration: "none", color: "white" }} to="/Profile">
               <Button
                 fullWidth
                 variant="contained"
