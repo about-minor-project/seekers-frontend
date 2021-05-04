@@ -7,6 +7,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Drawer from '@material-ui/core/Drawer';
+import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -35,7 +36,13 @@ const styles = theme => ({
   aboveDrawer: {
     zIndex: theme.zIndex.drawer + 1
   },
- 
+  logo: {
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
+    fontSize: 30,
+    fontWeight: 400,
+    color: '#3f51b5',
+  },
 });
 
 const MyToolbar = withStyles(styles)(
@@ -51,11 +58,9 @@ const MyToolbar = withStyles(styles)(
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h5" className={classes.title}>
-            Seeker
-          </Typography>
-          </Toolbar>
-       </AppBar>
+
+        </Toolbar>
+      </AppBar>
       <div className={classes.toolbarMargin} />
     </Fragment>
   )
@@ -63,19 +68,23 @@ const MyToolbar = withStyles(styles)(
 
 const MyDrawer = withStyles(styles)(
   ({ classes, variant, open, onClose, onItemClick }) => (
-    
-    <Drawer variant={variant} open={open} onClose={onClose} classes={{paper: classes.drawerPaper }}>
-      <div className={clsx({[classes.toolbarMargin]: variant === 'persistent' })}/>
+
+    <Drawer variant={variant} open={open} onClose={onClose} classes={{ paper: classes.drawerPaper }}>
+      <div className={clsx({ [classes.toolbarMargin]: variant === 'persistent' })} />
       <List>
+        <ListItem button className={classes.logo}>
+          <ListItemText>Seeker</ListItemText>
+        </ListItem>
+        <Divider className={classes.divider} />
         <ListItem button component={Link} to="/Profile" onClick={onItemClick('Profile')}>
           <ListItemText>Profile</ListItemText>
         </ListItem>
-        <ListItem  button component={Link} to="/" onClick={onItemClick('Logout')}>
+        <ListItem button component={Link} to="/" onClick={onItemClick('Logout')}>
           <ListItemText>Logout</ListItemText>
         </ListItem>
-       </List>
+      </List>
     </Drawer>
-     )
+  )
 );
 
 function AppBarInteraction({ classes, variant }) {
@@ -94,7 +103,7 @@ function AppBarInteraction({ classes, variant }) {
   return (
     <div className={classes.root}>
       <MyToolbar title={title} onMenuClick={toggleDrawer} />
-      <MyDrawer open={drawer}  onClose={toggleDrawer} onItemClick={onItemClick} variant={variant}/>
+      <MyDrawer open={drawer} onClose={toggleDrawer} onItemClick={onItemClick} variant={variant} />
     </div>
   );
 }
