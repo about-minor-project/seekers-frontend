@@ -3,6 +3,11 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import SignUp from "./components/signup";
 import Login from "./components/login";
 import Profile from "./components/profile";
+import Dashboard from "./components/Dashboard";
+import Home from "./components/Home";
+import Testimonial from "./components/Testimonial";
+import jobSearch from "./components/jobSearch";
+import Announcement from "./components/Announcement";
 
 const styles = {
   main: {
@@ -16,10 +21,8 @@ const styles = {
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     position: "relative",
-    overflow: "hidden"
-    
+    overflow: "hidden",
   },
-
 };
 class App extends Component {
   constructor(props) {
@@ -56,9 +59,14 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route exact path="/" component={this.renderContent} />
-          <Route exact path="/register" component={SignUp} />
-          <Route exact path="/profile" component={Profile} />
+          <Route exact path='/' component={this.renderContent} />
+          <Route exact path='/register' component={SignUp} />
+          <Route exact path='/profile' component={Profile} />
+          <Route exact path='/Dashboard' component={Dashboard} />
+          <Route exact path='/Home' component={Home} />
+          <Route exact path='/Testimonial' component={Testimonial} />
+          <Route exact path='/jobSearch' component={jobSearch} />
+          <Route exact path='/Announcement' component={Announcement} />
         </Switch>
       </Router>
     );

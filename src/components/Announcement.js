@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import NavBar from "./NavBar";
 
-class profile extends Component {
+class Announcement extends Component {
   render() {
     return (
       <>
         <NavBar />
         <div>
-          <h2>Admin Profile</h2>
+          <h2>Notice!!</h2>
         </div>
       </>
     );
   }
 }
-export default profile;
+export default Announcement;
