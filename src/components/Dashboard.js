@@ -4,6 +4,7 @@ import ReactTable from "react-table";
 import "react-table/react-table.css";
 import NavBar from "./NavBar.js";
 import Newjobpost from "./Newjobpost";
+import userService from "../services/user";
 import {
   Box,
   Grid,
@@ -24,9 +25,9 @@ export default class Appi extends Component {
   }
 
   async getUsersData() {
-    const res = await axios.get("https://seekers-web.herokuapp.com/api/users");
-    console.log(res.data);
-    this.setState({ loading: false, users: res.data });
+    const users = await userService.getAll();
+    console.log("i have no idea what im doing all users ->", users);
+    this.setState({ loading: false, users: users });
   }
   componentDidMount() {
     this.getUsersData();
@@ -46,20 +47,20 @@ export default class Appi extends Component {
         accessor: "email",
       },
       {
-        Header:"Graduating Year",
-        accessor:"details.yearOfGrad"
+        Header: "Graduating Year",
+        accessor: "details.yearOfGrad",
       },
       {
-        Header:"Current GPA",
-        accessor:"details.currentGpa"
-      }
+        Header: "Current GPA",
+        accessor: "details.currentGpa",
+      },
     ];
     return (
       <>
         <NavBar />
-        <Box p={5} color='primary.main'>
-          <Box display='flex' justifyContent='space-between'>
-            <Typography variant='h4'>Registered Students</Typography>
+        <Box p={5} color="primary.main">
+          <Box display="flex" justifyContent="space-between">
+            <Typography variant="h4">Registered Students</Typography>
             {/* <Newjobpost /> */}
           </Box>
         </Box>
