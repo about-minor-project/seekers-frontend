@@ -1,0 +1,26 @@
+.details {
+  display: grid;
+  place-items: center;
+  height: 80vh;
+}
+.container {
+  position: relative;
+  top: 2rem;
+  margin: 5rem;
+  padding: 4rem;
+  width: 50rem;
+  display: block;
+  margin: 0 auto;
+}
+.social {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
+  border: 1px solid #eeeeee;
+  padding: 1rem;
+}
+img {
+  display: block;
+  border-radius: 50%;
+  margin: 0 auto;
+}

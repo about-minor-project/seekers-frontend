@@ -7,7 +7,6 @@ import "./login.css";
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
-  // const [invalidNote, setInvalidNote] = useState(null);
   const [email, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
@@ -77,7 +76,7 @@ const Login = () => {
         userService.setToken(user.token);
 
         console.log("user", user);
-        // var decoded = jwt.decode(loggedUser);
+
         user.role === "user"
           ? history.push("/profile")
           : history.push("/Dashboard");
@@ -134,12 +133,6 @@ const Login = () => {
     </form>
   );
 
-  // const NoteForm = () => (
-  //   <form onSubmit={addNote}>
-  // <input value={newNote} onChange={handleNewNote} />
-  //     <button>save</button>
-  //   </form>
-  // );
   return (
     <div>
       <>
@@ -160,12 +153,6 @@ const Login = () => {
           </div>
         )}
         <br />
-        {/* <button onClick={() => setShowAll(!showAll)}>show {showAll ? "important" : "All"}</button> */}
-        {/* <ul>
-          {notesToShow.map((note, i) => (
-            <Note key={i} note={note} toggleImportance={() => toggleImportanceOf(note.id)} />
-          ))}
-        </ul> */}
       </>
     </div>
   );

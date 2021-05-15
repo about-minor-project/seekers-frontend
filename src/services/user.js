@@ -25,11 +25,11 @@ const update = (id, newObject) => {
   return request.then((res) => res.data);
 };
 
-const note = {
+const user = {
   getAll,
   create,
   update,
   setToken
 };
 
-export default note;
+export default user;
