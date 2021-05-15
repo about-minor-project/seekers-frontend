@@ -24,7 +24,7 @@ export default class Appi extends Component {
   }
 
   async getUsersData() {
-    const res = await axios.get("https://jsonplaceholder.typicode.com/users");
+    const res = await axios.get("https://seekers-web.herokuapp.com/api/users");
     console.log(res.data);
     this.setState({ loading: false, users: res.data });
   }
@@ -35,25 +35,24 @@ export default class Appi extends Component {
     const columns = [
       {
         Header: "First Name",
-        accessor: "name",
+        accessor: "fname",
       },
       {
         Header: "Last Name",
-        accessor: "username",
+        accessor: "lname",
       },
-      {
-        Header: "ID",
-        accessor: "id",
-      },
-
       {
         Header: "Email",
         accessor: "email",
       },
       {
-        Header: " Website",
-        accessor: "website",
+        Header:"Graduating Year",
+        accessor:"details.yearOfGrad"
       },
+      {
+        Header:"Current GPA",
+        accessor:"details.currentGpa"
+      }
     ];
     return (
       <>
@@ -61,7 +60,7 @@ export default class Appi extends Component {
         <Box p={5} color='primary.main'>
           <Box display='flex' justifyContent='space-between'>
             <Typography variant='h4'>Registered Students</Typography>
-            <Newjobpost />
+            {/* <Newjobpost /> */}
           </Box>
         </Box>
 
