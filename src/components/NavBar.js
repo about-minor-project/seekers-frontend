@@ -15,8 +15,6 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 
 const drawerWidth = 240;
-const history = createBrowserHistory();
-
 const styles = (theme) => ({
   root: {
     flexGrow: 1,
@@ -63,22 +61,13 @@ const MyToolbar = withStyles(styles)(({ classes, title, onMenuClick }) => (
     <div className={classes.toolbarMargin} />
   </Fragment>
 ));
-
-// const handleLogout = () => {
-//   console.log("logged out dude...");
-// }
+  
+const role = window.localStorage.getItem("role");
 
 const handleLogout = () => {
   window.localStorage.clear();
   console.log("logged out successfully");
-  // setUser(null);
-  // setSuccessMessage("Logged out successfully");
-  // setTimeout(() => {
-  // setSuccessMessage(null);
-  // }, 3000);
 };
-
-// const Logout = () => <button onClick={handleLogout}>Logout</button>;
 
 const MyDrawer = withStyles(styles)(
   ({ classes, variant, open, onClose, onItemClick }) => (
@@ -96,14 +85,14 @@ const MyDrawer = withStyles(styles)(
           <ListItemText>SEEKER</ListItemText>
         </ListItem>
         <Divider className={classes.divider} />
-        <ListItem
+        {role === "admin" && <ListItem
           button
           component={Link}
           to="/Dashboard"
-          onClick={onItemClick("Profile")}
-        >
+          onClick={onItemClick("Profile")}>
           <ListItemText>Dashboard</ListItemText>
-        </ListItem>
+          </ListItem>
+        }
         <ListItem
           button
           component={Link}

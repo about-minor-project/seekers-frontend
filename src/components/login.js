@@ -14,9 +14,18 @@ const Login = () => {
   const history = useHistory();
 
   // already logged in? then throw him to profiles
-  const loggedIn = window.localStorage.getItem("loggedUser");
-  loggedIn && history.push("/profile");
-
+  useEffect(() => {  
+  const loggedIn = window.localStorage.getItem("role");
+   if(loggedIn)
+   history.push("/profile")
+ 
+   console.log("loggedIn", loggedIn)
+    if(loggedIn) { 
+   loggedIn === "user"
+   ? history.push("/profile")
+   : history.push("/dashboard");
+   }  
+  }, [])
   const Notification = ({ message }) => {
     if (message === null) return null;
     return (
@@ -62,10 +71,10 @@ const Login = () => {
         console.log("user is here", user);
 
         window.localStorage.setItem("loggedUser", JSON.stringify(user));
-        window.localStorage.setItem('email', user.email)
-        window.localStorage.setItem('name', user.fname + " " + user.lname)
-        window.localStorage.setItem('details', user.details)
-        window.localStorage.setItem('role', user.role)
+        window.localStorage.setItem("email", user.email);
+        window.localStorage.setItem("name", user.fname + " " + user.lname);
+        window.localStorage.setItem("details", user.details);
+        window.localStorage.setItem("role", user.role);
         setUser(user);
         console.log("email", email);
         console.log("password", password);
@@ -93,7 +102,6 @@ const Login = () => {
     }
   };
 
-  
   const LoginForm = () => (
     <form onSubmit={handleLogin} className="login">
       <div>
@@ -133,9 +141,7 @@ const Login = () => {
         <Success message={successMessage} />
         {/* <Error message={invalidNote} /> */}
         {LoginForm()}
-        {
-          console.log("user ", user)
-        }
+        {console.log("user ", user)}
         <br />
       </>
     </div>

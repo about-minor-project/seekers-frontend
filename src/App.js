@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect, Link } from "react-router-dom";
 import SignUp from "./components/signup";
 import Login from "./components/login";
 import Profile from "./components/profile";
@@ -67,6 +67,7 @@ class App extends Component {
           <Route exact path='/Testimonial' component={Testimonial} />
           <Route exact path='/jobSearch' component={jobSearch} />
           <Route exact path='/Announcement' component={Announcement} />
+          <Redirect to="/" />
         </Switch>
       </Router>
     );
