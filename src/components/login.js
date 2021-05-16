@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import userService from "../services/user";
 import loginService from "../services/login";
+import Button from "@material-ui/core/Button";
 import "./login.css";
 
 const Login = () => {
@@ -14,18 +15,17 @@ const Login = () => {
   const history = useHistory();
 
   // already logged in? then throw him to profiles
-  useEffect(() => {  
-  const loggedIn = window.localStorage.getItem("role");
-   if(loggedIn)
-   history.push("/profile")
- 
-   console.log("loggedIn", loggedIn)
-    if(loggedIn) { 
-   loggedIn === "user"
-   ? history.push("/profile")
-   : history.push("/dashboard");
-   }  
-  }, [])
+  useEffect(() => {
+    const loggedIn = window.localStorage.getItem("role");
+    if (loggedIn) history.push("/profile");
+
+    console.log("loggedIn", loggedIn);
+    if (loggedIn) {
+      loggedIn === "user"
+        ? history.push("/profile")
+        : history.push("/dashboard");
+    }
+  }, []);
   const Notification = ({ message }) => {
     if (message === null) return null;
     return (
@@ -127,6 +127,14 @@ const Login = () => {
           name="Password"
         />
       </div>
+      <br />
+
+      <Link to="/register">
+        <Button variant="contained" color="secondary">
+          Register
+        </Button>
+      </Link>
+
       <br />
       <button type="submit">Login</button>
     </form>

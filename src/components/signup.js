@@ -11,6 +11,7 @@ import {
 } from "@material-ui/core";
 import PersonIcon from "@material-ui/icons/Person";
 import { Link } from "react-router-dom";
+import userService from "../services/user"
 
 const styles = {
   main: {
@@ -98,8 +99,24 @@ class SignUp extends React.Component {
       input["password"] = "";
       input["confirm_password"] = "";
       this.setState({ input: input });
+     
+      const newUser =  {
+        "email": this.state.input.email,
+        "fname": this.state.input.fname,
+        "lname": this.state.input.lname,
+        "password": this.state.input.password,
+        "role": "user"
+      }
 
-      alert("Your Form is submited");
+      // console.log("email", this.state.input.email);
+      // console.log("fname", this.state.input.fname);
+      // console.log("lname", this.state.input.lname);
+      // console.log("password", this.state.input.password);
+
+      userService.create(newUser).then(user => {
+        alert(`${user.lname} Registered Successfully`);
+      })
+      // console.log("input", input)
     }
   }
 
