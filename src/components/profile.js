@@ -14,6 +14,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Button from "@material-ui/core/Button";
+import Newjobpost from "./Newjobpost";
 
 import "./profile.css";
 
@@ -41,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
+    width: "100%",
     marginTop: theme.spacing(1),
   },
   large: {
@@ -81,37 +82,36 @@ const Profile = () => {
       <NavBar />
       <div>
         <div>
-          <div className="details">
-            <div className="container">
+          <div className='details'>
+            <div className='container'>
               <div>
                 <img src={details.image} />
               </div>
+
               <ListItem button>
-                <ListItemIcon>
-                  Name : {name.toUpperCase()} 
-                </ListItemIcon>{" "}
+                <ListItemIcon>Name : {name.toUpperCase()}</ListItemIcon>{" "}
               </ListItem>
-                <Button href={"mailto:" + email}>
-                  <ListItem button>
-                    <ListItemIcon>
-                      <EmailIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Email" />
-                  </ListItem>
-                </Button>
-                <ListItemText />
+              <Button href={"mailto:" + email}>
+                <ListItem button>
+                  <ListItemIcon>
+                    <EmailIcon />
+                  </ListItemIcon>
+                  <ListItemText primary='Email' />
+                </ListItem>
+              </Button>
+              <ListItemText />
               <ListItem button>
                 <ListItemIcon>Headline : {details.headline}</ListItemIcon>
                 <ListItemText />
               </ListItem>
               <div className={classes.root}>
-                <List component="nav" className="social">
+                <List component='nav' className='social'>
                   <Button href={details.website}>
                     <ListItem button>
                       <ListItemIcon>
                         <LanguageIcon />
                       </ListItemIcon>
-                      <ListItemText primary="Website" />
+                      <ListItemText primary='Website' />
                     </ListItem>
                   </Button>
 
@@ -120,7 +120,7 @@ const Profile = () => {
                       <ListItemIcon>
                         <GitHubIcon />
                       </ListItemIcon>
-                      <ListItemText primary="Github" />
+                      <ListItemText primary='Github' />
                     </ListItem>
                   </Button>
 
@@ -129,7 +129,7 @@ const Profile = () => {
                       <ListItemIcon>
                         <LinkedInIcon />
                       </ListItemIcon>
-                      <ListItemText primary="Linkedin" />
+                      <ListItemText primary='Linkedin' />
                     </ListItem>
                   </Button>
 
@@ -138,7 +138,7 @@ const Profile = () => {
                       <ListItemIcon>
                         <InsertDriveFileIcon />
                       </ListItemIcon>
-                      <ListItemText primary="Resume" />
+                      <ListItemText primary='Resume' />
                     </ListItem>
                   </Button>
                 </List>
@@ -211,6 +211,10 @@ const Profile = () => {
                 <ListItemIcon>Skills : {details.skills}</ListItemIcon>
                 <ListItemText />
               </ListItem>
+              <br />
+              <div align='center'>
+                <Newjobpost />
+              </div>
             </div>
           </div>
         </div>

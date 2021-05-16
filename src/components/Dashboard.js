@@ -5,6 +5,10 @@ import "react-table/react-table.css";
 import NavBar from "./NavBar.js";
 import Newjobpost from "./Newjobpost";
 import userService from "../services/user";
+import DeleteIcon from "@material-ui/icons/Delete";
+import PersonIcon from "@material-ui/icons/Person";
+import { useHistory, Link } from "react-router-dom";
+
 import {
   Box,
   Grid,
@@ -38,6 +42,7 @@ export default class Appi extends Component {
         Header: "First Name",
         accessor: "fname",
       },
+
       {
         Header: "Last Name",
         accessor: "lname",
@@ -47,6 +52,10 @@ export default class Appi extends Component {
         accessor: "email",
       },
       {
+        Header: "College",
+        accessor: "details.college",
+      },
+      {
         Header: "Graduating Year",
         accessor: "details.yearOfGrad",
       },
@@ -54,13 +63,32 @@ export default class Appi extends Component {
         Header: "Current GPA",
         accessor: "details.currentGpa",
       },
+      {
+        Header: "Skills",
+        accessor: "details.skills",
+      },
+
+      {
+        Cell: () => (
+          <>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span>
+              <DeleteIcon />
+            </span>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <Link to='/profile'>
+              <PersonIcon color='primary' />
+            </Link>
+          </>
+        ),
+      },
     ];
     return (
       <>
         <NavBar />
-        <Box p={5} color="primary.main">
-          <Box display="flex" justifyContent="space-between">
-            <Typography variant="h4">Registered Students</Typography>
+        <Box p={5} color='primary.main'>
+          <Box display='flex' justifyContent='space-between'>
+            <Typography variant='h4'>Registered Students</Typography>
             {/* <Newjobpost /> */}
           </Box>
         </Box>

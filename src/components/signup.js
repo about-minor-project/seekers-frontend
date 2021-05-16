@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 import PersonIcon from "@material-ui/icons/Person";
 import { Link } from "react-router-dom";
-import userService from "../services/user"
+import userService from "../services/user";
 
 const styles = {
   main: {
@@ -97,25 +97,25 @@ class SignUp extends React.Component {
       input["lname"] = "";
       input["email"] = "";
       input["password"] = "";
-      input["confirm_password"] = "";
+      input["confirmpassword"] = "";
       this.setState({ input: input });
-     
-      const newUser =  {
-        "email": this.state.input.email,
-        "fname": this.state.input.fname,
-        "lname": this.state.input.lname,
-        "password": this.state.input.password,
-        "role": "user"
-      }
+
+      const newUser = {
+        email: this.state.input.email,
+        fname: this.state.input.fname,
+        lname: this.state.input.lname,
+        password: this.state.input.password,
+        role: "user",
+      };
 
       // console.log("email", this.state.input.email);
       // console.log("fname", this.state.input.fname);
       // console.log("lname", this.state.input.lname);
       // console.log("password", this.state.input.password);
 
-      userService.create(newUser).then(user => {
+      userService.create(newUser).then((user) => {
         alert(`${user.lname} Registered Successfully`);
-      })
+      });
       // console.log("input", input)
     }
   }
@@ -151,6 +151,11 @@ class SignUp extends React.Component {
     if (!input["password"]) {
       isValid = false;
       errors["password"] = "Please enter your password.";
+    }
+
+    if (input["confirmpassword"] != input["password"]) {
+      isValid = false;
+      errors["confirmpassword"] = "your password don't match";
     }
 
     this.setState({
@@ -229,6 +234,21 @@ class SignUp extends React.Component {
 
                   <div className='text-danger' style={styles.danger}>
                     {this.state.errors.password}
+                  </div>
+                </FormControl>
+                <FormControl margin='normal' required fullWidth>
+                  <InputLabel htmlFor='password'>Confirm Password</InputLabel>
+                  <Input
+                    type='password'
+                    name='confirmpassword'
+                    value={this.state.input.confirmpassword}
+                    onChange={this.handleChange}
+                    autoFocus
+                    id='confirmpassword'
+                  />
+
+                  <div className='text-danger' style={styles.danger}>
+                    {this.state.errors.confirmpassword}
                   </div>
                 </FormControl>
                 <Button
