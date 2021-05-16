@@ -2,34 +2,6 @@
 ## Seeker is a job searching site that helps thousands of people to find a perfect fit job based on their skills. Seekers provide a wide variety of job opportunities for freshers and remove their tension of wondering. Seeker builds using MERN(MongoDB,ExpressJs,React,NodeJs) stack. MERN Stack is a Javascript Stack that is used for easier and faster deployment of full-stack web applications. Basically Seekers provides a way to grab the right opportunity.
 
 
-
-# Project Structure
-seekers-frontend
-├── public
-├── src
-|   └── componenets
-|       └── Announcements.js
-|       └── Home.js
-|       └── jonDetails.js
-|       └── jobSearch.js
-|       └── login.js
-|       └── login.css
-|       └── Nav.js
-|       └── Workshop.js
-├── resource
-|   └── ...
-├── styles
-|   └── index.css
-|   └── index.js
-├── .firebaserc
-├── .gitignore
-├── firebase.json
-├── package-lock.json
-├── package.json
-├── README.md
-└── ...
-
-
 ## Project Images
 ![WhatsApp Image 2021-05-07 at 5 16 34 PM](https://user-images.githubusercontent.com/62983983/118395930-a79ffa00-b66a-11eb-881f-093391877897.jpeg)
 ![WhatsApp Image 2021-05-07 at 5 16 49 PM](https://user-images.githubusercontent.com/62983983/118395969-e766e180-b66a-11eb-817f-382fc7416ec2.jpeg)
