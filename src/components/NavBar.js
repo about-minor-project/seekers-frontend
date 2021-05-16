@@ -51,18 +51,34 @@ const MyToolbar = withStyles(styles)(({ classes, title, onMenuClick }) => (
       <Toolbar>
         <IconButton
           className={classes.menuButton}
-          color='inherit'
-          aria-label='Menu'
+          color="inherit"
+          aria-label="Menu"
           onClick={onMenuClick}
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant='h5'>SEEKER</Typography>
+        <Typography variant="h5">SEEKER</Typography>
       </Toolbar>
     </AppBar>
     <div className={classes.toolbarMargin} />
   </Fragment>
 ));
+
+// const handleLogout = () => {
+//   console.log("logged out dude...");
+// }
+
+const handleLogout = () => {
+  window.localStorage.clear();
+  console.log("logged out successfully");
+  // setUser(null);
+  // setSuccessMessage("Logged out successfully");
+  // setTimeout(() => {
+  // setSuccessMessage(null);
+  // }, 3000);
+};
+
+// const Logout = () => <button onClick={handleLogout}>Logout</button>;
 
 const MyDrawer = withStyles(styles)(
   ({ classes, variant, open, onClose, onItemClick }) => (
@@ -83,7 +99,7 @@ const MyDrawer = withStyles(styles)(
         <ListItem
           button
           component={Link}
-          to='/Dashboard'
+          to="/Dashboard"
           onClick={onItemClick("Profile")}
         >
           <ListItemText>Dashboard</ListItemText>
@@ -91,7 +107,7 @@ const MyDrawer = withStyles(styles)(
         <ListItem
           button
           component={Link}
-          to='/Profile'
+          to="/Profile"
           onClick={onItemClick("Profile")}
         >
           <ListItemText>Profile</ListItemText>
@@ -99,7 +115,7 @@ const MyDrawer = withStyles(styles)(
         <ListItem
           button
           component={Link}
-          to='/jobSearch'
+          to="/jobSearch"
           onClick={onItemClick("Posted Jobs")}
         >
           <ListItemText>Posted Jobs</ListItemText>
@@ -107,7 +123,7 @@ const MyDrawer = withStyles(styles)(
         <ListItem
           button
           component={Link}
-          to='/Announcement'
+          to="/Announcement"
           onClick={onItemClick("Announcement")}
         >
           <ListItemText>Announcement</ListItemText>
@@ -115,7 +131,7 @@ const MyDrawer = withStyles(styles)(
         <ListItem
           button
           component={Link}
-          to='/Testimonial'
+          to="/Testimonial"
           onClick={onItemClick("Testimonial")}
         >
           <ListItemText>Testimonials</ListItemText>
@@ -123,8 +139,10 @@ const MyDrawer = withStyles(styles)(
         <ListItem
           button
           component={Link}
-          to='/'
-          onClick={onItemClick("Logout")}
+          // to='/'
+          onClick={() => {
+            handleLogout();
+          }}
         >
           <ListItemText>Logout</ListItemText>
         </ListItem>

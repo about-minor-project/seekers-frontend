@@ -93,16 +93,7 @@ const Login = () => {
     }
   };
 
-  const handleLogout = () => {
-    window.localStorage.removeItem("loggedNoteAppUser");
-    setUser(null);
-    setSuccessMessage("Logged out successfully");
-    setTimeout(() => {
-      setSuccessMessage(null);
-    }, 3000);
-  };
-  const Logout = () => <button onClick={handleLogout}>Logout</button>;
-
+  
   const LoginForm = () => (
     <form onSubmit={handleLogin} className="login">
       <div>
@@ -141,17 +132,10 @@ const Login = () => {
         <Notification message={errorMessage} />
         <Success message={successMessage} />
         {/* <Error message={invalidNote} /> */}
-
-        {user === null ? (
-          LoginForm()
-        ) : (
-          <div>
-            <h3>
-              Logged in as {user.name} {<Logout />}
-            </h3>
-            {/* {NoteForm()} */}
-          </div>
-        )}
+        {LoginForm()}
+        {
+          console.log("user ", user)
+        }
         <br />
       </>
     </div>
