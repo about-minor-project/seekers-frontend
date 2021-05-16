@@ -4,40 +4,30 @@
 
 
 # Project Structure
-seeker-frontend
+seekers-frontend
 ├── public
-|       └── favicon.ico
-|       └── index.html
-|       └── logo192.png
-|       └── logo512.png
-|       └── manifest.json
-|       └── robots.txt
 ├── src
-|     └── components 
-|          └── Announcements.js
-|          └── Dashboard.js
-|          └── Home.js
-|          └── jobDetails.js
-|          └── jobSearch.js
-|          └── login.css
-|          └── login.js
-|          └── NavBar.js
-|          └── Newjobpost.js
-|          └── profile.css
-|          └── profile.js
-|          └── signup.js
-|          └── Testomonials.js
-|     └── services
-|          └── details.js
-|          └── login.js
-|          └── user.js
-|     └── App.css
-|     └── App.js
-|     └── index.css
-|     └── index.js
+|   └── componenets
+|       └── Announcements.js
+|       └── Home.js
+|       └── jonDetails.js
+|       └── jobSearch.js
+|       └── login.js
+|       └── login.css
+|       └── Nav.js
+|       └── Workshop.js
+├── resource
+|   └── ...
+├── styles
+|   └── index.css
+|   └── index.js
+├── .firebaserc
+├── .gitignore
+├── firebase.json
 ├── package-lock.json
 ├── package.json
 ├── README.md
+└── ...
 
 
 ## Project Images
