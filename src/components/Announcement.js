@@ -1,26 +1,18 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import noticeService from "../services/notice";
-
-import Divider from "@material-ui/core/Divider";
-import { useHistory } from "react-router-dom";
-import detailsService from "../services/details";
 import { makeStyles } from "@material-ui/core/styles";
-import LinkedInIcon from "@material-ui/icons/LinkedIn";
-import GitHubIcon from "@material-ui/icons/GitHub";
-import LanguageIcon from "@material-ui/icons/Language";
-import InsertDriveFileIcon from "@material-ui/icons/InsertDriveFile";
-import EmailIcon from "@material-ui/icons/Email";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
 import Button from "@material-ui/core/Button";
-
+import DeleteIcon from "@material-ui/icons/Delete";
 import { Alert, AlertTitle } from "@material-ui/lab";
-import { Grid } from "@material-ui/core";
+import Loader from "../assets/loader/loading.gif";
+import { useHistory } from "react-router-dom";
 
 const Announcement = () => {
+  const history = useHistory();
+  const loggedIn = window.localStorage.getItem("loggedUser");
+  !loggedIn && history.push("/");
+
   const useStyles = makeStyles((theme) => ({
     root: {
       width: "100%",
@@ -44,43 +36,151 @@ const Announcement = () => {
       margin: "0 auto",
     },
     alertWrapper: {
-      display: "grid",
-      alignItems: "center",
+      display: "flex",
+      flexDirection: "column-reverse",
     },
     inputContainer: {
       // display: "flex",
     },
     noticeInput: {
-      padding: ".7rem",
-      width: "40rem",
+      padding: ".6rem",
+      width: "35rem",
       marginRight: "1rem",
+    },
+    success: {
+      maxWidth: "90%",
+      margin: "0 auto",
+    },
+    warning: {
+      maxWidth: "90%",
+      margin: "0 auto",
+    },
+    alert: {
+      margin: "0 auto",
+      width: "90%",
+    },
+    margin: {
+      margin: "1rem",
+      padding: "1.2rem",
+    },
+    loader: {
+      display: "table",
+      margin: "0 auto",
+    },
+    loaderImage: {
+      width: "5rem",
+    },
+    loaderContainer: {
+      marginTop: "5rem",
+    },
+    button: {
+      position: "absolute",
+      right: "6rem",
+    },
+    publishedDate: {
+      position: "absolute",
+      right: "6rem",
+    },
+    alertMessage: {
+      width: "80%",
     },
   }));
 
   const [notices, setNotices] = useState([]);
   const [role, setRole] = useState([]);
   const [newNotice, setNewNotice] = useState([]);
+  const [successMessage, setSuccessMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
     const role = window.localStorage.getItem("role");
     setRole(role);
-    noticeService.getAll().then((data) => setNotices(data));
+    noticeService.getAll().then((data) => {
+      setNotices(data);
+      setLoading(false);
+    });
   }, []);
   const classes = useStyles();
 
+  const Success = ({ message }) => {
+    if (message === null) return null;
+    return (
+      <div className={classes.success}>
+        <Alert severity="success" className={classes.alert}>
+          <AlertTitle>Success</AlertTitle>
+          <p>{message}</p>
+        </Alert>
+      </div>
+    );
+  };
+
+  const Error = ({ message }) => {
+    if (message == null) return null;
+    return (
+      <div className={classes.warning}>
+        <Alert severity="error" className={classes.alert}>
+          <AlertTitle>Error While Publishing the Notice</AlertTitle>
+          <p>{message}</p>
+        </Alert>
+      </div>
+    );
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("hello", newNotice);
+    // console.log("hello", newNotice);
     const notice = newNotice;
-    noticeService.create(notice).then((res) => console.log("added note", res));
+    if (notice.length >= 10) {
+      try {
+        const savedNotice = await noticeService.create({
+          notice,
+        });
+        // console.log("savedNotice", savedNotice);
+        setNotices(notices.concat(savedNotice));
+        setNewNotice("");
+        setSuccessMessage(`Notice "${notice}" Added Successfully`);
+        setTimeout(() => {
+          setSuccessMessage(null);
+        }, 5000);
+      } catch (error) {
+        setErrorMessage("There was an error while posting the notice");
+        setTimeout(() => {
+          setErrorMessage(null);
+        }, 5000);
+      }
+    } else {
+      setErrorMessage(
+        "Please provide a valid notice, length must be atleast of 10 characters"
+      );
+      setTimeout(() => {
+        setErrorMessage(null);
+      }, 5000);
+    }
+  };
 
-    const savedNotice = await noticeService.create({
-      notice,
-    });
+  const handleDeleteNotice = (id) => {
+    const deleteObj = notices.find((notice) => notice.id === id);
+    if (window.confirm(`do you really want to delete "${deleteObj.notice}"`))
+      noticeService
+        .deleteById(id)
+        .then(() => {
+          setNotices(notices.filter((item) => item.id !== id));
+          setSuccessMessage(`"${deleteObj.notice}" deleted successfully`);
+        })
+        .catch(() => {
+          setErrorMessage(
+            `unable to delete, the user  is already deleted from the server`
+          );
+        });
+
+    setTimeout(() => {
+      setSuccessMessage(null);
+    }, 5000);
   };
 
   const handleChange = (event) => {
-    console.log(event.target.value);
     setNewNotice(event.target.value);
   };
 
@@ -89,7 +189,11 @@ const Announcement = () => {
       <div>
         <NavBar />
         <div className={classes.root}>
-          <h1 className={classes.header}>Notice</h1>
+          <h1 className={classes.header}>Announcements</h1>
+
+          <Success message={successMessage} />
+          <Error message={errorMessage} />
+
           <div className={classes.inputContainer}>
             {role === "admin" && (
               <div>
@@ -108,18 +212,43 @@ const Announcement = () => {
               </div>
             )}
             <div className={classes.alertWrapper}>
-              {notices.map((notice, id) => (
-                <div key={id} className={classes.alerts}>
-                  <Alert severity="info">
-                    <AlertTitle>Important Notice</AlertTitle>
-                    {notice.notice}
-                    &nbsp;&nbsp;
-                    <strong>
-                      {new Date(notice.date).toLocaleDateString()}
-                    </strong>
-                  </Alert>
+              {!loading ? (
+                notices.map((notice, id) => (
+                  <div key={id} className={classes.alert}>
+                    <Alert severity="info" className={classes.margin}>
+                      {role === "admin" && (
+                        <div>
+                          <Button
+                            variant="contained"
+                            color="secondary"
+                            className={classes.button}
+                            size="small"
+                            onClick={() => handleDeleteNotice(notice.id)}
+                            startIcon={<DeleteIcon />}
+                          >
+                            Delete
+                          </Button>
+                        </div>
+                      )}
+                      <AlertTitle>Important Notice</AlertTitle>
+                      <div className={classes.alertMessage}>
+                        {notice.notice}
+                        &nbsp;&nbsp;
+                        <br />
+                        <strong className={classes.publishedDate}>
+                          Published on &nbsp; &nbsp;
+                          {new Date(notice.date).toLocaleDateString("en-GB")}
+                        </strong>
+                      </div>
+                    </Alert>
+                  </div>
+                ))
+              ) : (
+                <div className={classes.loaderContainer}>
+                  <img src={Loader} className={classes.loaderImage} />
+                  <h1 className={classes.loader}>Loading...</h1>
                 </div>
-              ))}
+              )}
             </div>
           </div>
         </div>

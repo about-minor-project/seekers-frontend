@@ -61,12 +61,13 @@ const MyToolbar = withStyles(styles)(({ classes, title, onMenuClick }) => (
     <div className={classes.toolbarMargin} />
   </Fragment>
 ));
-  
+
 const role = window.localStorage.getItem("role");
 
 const handleLogout = () => {
   window.localStorage.clear();
   console.log("logged out successfully");
+  window.location = "/";
 };
 
 const MyDrawer = withStyles(styles)(
@@ -85,14 +86,16 @@ const MyDrawer = withStyles(styles)(
           <ListItemText>SEEKER</ListItemText>
         </ListItem>
         <Divider className={classes.divider} />
-        {role === "admin" && <ListItem
-          button
-          component={Link}
-          to="/Dashboard"
-          onClick={onItemClick("Profile")}>
-          <ListItemText>Dashboard</ListItemText>
+        {role === "admin" && (
+          <ListItem
+            button
+            component={Link}
+            to="/Dashboard"
+            onClick={onItemClick("Profile")}
+          >
+            <ListItemText>Dashboard</ListItemText>
           </ListItem>
-        }
+        )}
         <ListItem
           button
           component={Link}

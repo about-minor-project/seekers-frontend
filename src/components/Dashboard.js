@@ -29,8 +29,12 @@ export default class Appi extends Component {
   }
 
   async getUsersData() {
+    const loggedIn = window.localStorage.getItem("loggedUser");
+    if (!loggedIn) {
+      window.location = "/";
+      console.log("User not logged in");
+    }
     const users = await userService.getAll();
-    console.log("i have no idea what im doing all users ->", users);
     this.setState({ loading: false, users: users });
   }
   componentDidMount() {
