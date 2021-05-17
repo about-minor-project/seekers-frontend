@@ -57,7 +57,7 @@ const Announcement = () => {
     },
     alert: {
       margin: "0 auto",
-      width: "90%",
+      width: "95%",
     },
     margin: {
       margin: "1rem",
@@ -236,7 +236,7 @@ const Announcement = () => {
                         &nbsp;&nbsp;
                         <br />
                         <strong className={classes.publishedDate}>
-                          Published on &nbsp; &nbsp;
+                          Published on &nbsp;
                           {new Date(notice.date).toLocaleDateString("en-GB")}
                         </strong>
                       </div>
