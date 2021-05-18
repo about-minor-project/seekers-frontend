@@ -2,8 +2,8 @@ import axios from "axios";
 const baseUrl = "/api/details";
 
 const getDetails = async (id) => {
-  const request = await axios.get(`${baseUrl}/${id}`);
-  return request.data
+  const response = await axios.get(`${baseUrl}/${id}`);
+  return response.data
 };
 
 const details = {
