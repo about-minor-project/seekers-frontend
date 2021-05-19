@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from "react";
+import IconButton from "@material-ui/core/IconButton";
+import Visibility from "@material-ui/icons/Visibility";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { useHistory, Link } from "react-router-dom";
 import userService from "../services/user";
 import loginService from "../services/login";
@@ -36,6 +40,24 @@ const Login = () => {
         : history.push("/dashboard");
     }
   }, []);
+
+  const [values, setValues] = React.useState({
+    password: "",
+    showPassword: false,
+  });
+
+  const handleClickShowPassword = () => {
+    setValues({ ...values, showPassword: !values.showPassword });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
+  const handlePasswordChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+
   const Notification = ({ message }) => {
     if (message === null) return null;
     return (
@@ -116,6 +138,7 @@ const Login = () => {
     },
   };
 
+
   const handleLogin = async (event) => {
     event.preventDefault();
 
@@ -193,11 +216,24 @@ const Login = () => {
           <FormControl margin='normal' required fullWidth>
             <InputLabel htmlFor='email'>Password</InputLabel>
             <Input
-              type='password'
+              type={values.showPassword ? "text" : "password"}
               value={password}
+
               onChange={(e) => {
                 setPassword(e.target.value);
+                handlePasswordChange("password");
+
               }}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                  >
+                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
               name='Password'
             />
           </FormControl>
@@ -229,6 +265,10 @@ const Login = () => {
       </form>
     </Paper>
   );
+
+
+
+
 
   return (
     <div>
