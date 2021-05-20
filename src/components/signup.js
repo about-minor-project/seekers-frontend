@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import {
   Avatar,
   Button,
@@ -66,6 +67,7 @@ const styles = {
   },
 };
 class SignUp extends React.Component {
+
   constructor() {
     super();
     this.state = {
@@ -76,6 +78,8 @@ class SignUp extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+
 
   handleChange(event) {
     let input = this.state.input;
@@ -99,6 +103,7 @@ class SignUp extends React.Component {
       input["password"] = "";
       input["confirmpassword"] = "";
       this.setState({ input: input });
+
 
       const newUser = {
         email: this.state.input.email,
