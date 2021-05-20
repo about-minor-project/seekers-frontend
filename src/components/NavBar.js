@@ -1,7 +1,6 @@
 import React, { useState, Fragment } from "react";
 import clsx from "clsx";
-import { Router, Route, Link } from "react-router-dom";
-import { createBrowserHistory } from "history";
+import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -91,19 +90,21 @@ const MyDrawer = withStyles(styles)(
             button
             component={Link}
             to="/Dashboard"
-            onClick={onItemClick("Profile")}
+            onClick={onItemClick("Dashboard")}
           >
             <ListItemText>Dashboard</ListItemText>
           </ListItem>
         )}
-        <ListItem
-          button
-          component={Link}
-          to="/Profile"
-          onClick={onItemClick("Profile")}
-        >
-          <ListItemText>Profile</ListItemText>
-        </ListItem>
+        {role === "user" && (
+          <ListItem
+            button
+            component={Link}
+            to="/Profile"
+            onClick={onItemClick("Profile")}
+          >
+            <ListItemText>Profile</ListItemText>
+          </ListItem>
+        )}
         <ListItem
           button
           component={Link}

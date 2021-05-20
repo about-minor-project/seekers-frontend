@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { Alert, AlertTitle } from "@material-ui/lab";
-import Loader from "../assets/loader/loading.gif";
+import Loader from "../assets/loader/load.gif";
 import { useHistory } from "react-router-dom";
 
 const Announcement = () => {
@@ -92,7 +92,6 @@ const Announcement = () => {
   const [successMessage, setSuccessMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
     const role = window.localStorage.getItem("role");
@@ -245,7 +244,7 @@ const Announcement = () => {
                 ))
               ) : (
                 <div className={classes.loaderContainer}>
-                  <img src={Loader} className={classes.loaderImage} />
+                  <img src={Loader} atl="" className={classes.loaderImage} />
                   <h1 className={classes.loader}>Loading...</h1>
                 </div>
               )}

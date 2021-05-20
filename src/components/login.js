@@ -33,7 +33,7 @@ const Login = () => {
     const loggedIn = window.localStorage.getItem("role");
     if (loggedIn) history.push("/profile");
 
-    console.log("loggedIn", loggedIn);
+    // console.log("loggedIn", loggedIn);
     if (loggedIn) {
       loggedIn === "user"
         ? history.push("/profile")
@@ -61,7 +61,7 @@ const Login = () => {
   const Notification = ({ message }) => {
     if (message === null) return null;
     return (
-      <div className='error'>
+      <div className="error">
         <p>{message}</p>
       </div>
     );
@@ -70,7 +70,7 @@ const Login = () => {
   const Success = ({ message }) => {
     if (message === null) return null;
     return (
-      <div className='success'>
+      <div className="success">
         <p>{message}</p>
       </div>
     );
@@ -79,7 +79,7 @@ const Login = () => {
   const Error = ({ message }) => {
     if (message == null) return null;
     return (
-      <div className='warning'>
+      <div className="warning">
         <p>{message}</p>
       </div>
     );
@@ -138,7 +138,6 @@ const Login = () => {
     },
   };
 
-
   const handleLogin = async (event) => {
     event.preventDefault();
 
@@ -154,16 +153,14 @@ const Login = () => {
           password,
         });
 
-        console.log("user is here", user);
-
         window.localStorage.setItem("loggedUser", JSON.stringify(user));
         window.localStorage.setItem("email", user.email);
         window.localStorage.setItem("name", user.fname + " " + user.lname);
         window.localStorage.setItem("details", user.details);
         window.localStorage.setItem("role", user.role);
         setUser(user);
-        console.log("email", email);
-        console.log("password", password);
+        // console.log("email", email);
+        // console.log("password", password);
         setUsername("");
         setPassword("");
         setSuccessMessage(`Login Success, welcome ${user.name}`);
@@ -194,35 +191,33 @@ const Login = () => {
       <Avatar style={styles.avatar}>
         <LockIcon />
       </Avatar>
-      <Typography component='h1' variant='h5'>
+      <Typography component="h1" variant="h5">
         Login{" "}
       </Typography>
-      <form onSubmit={handleLogin} className='login'>
+      <form onSubmit={handleLogin} className="login">
         <div>
-          <FormControl margin='normal' required fullWidth>
-            <InputLabel htmlFor='email'>Email</InputLabel>
+          <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="email">Email</InputLabel>
             <Input
-              type='text'
+              type="text"
               value={email}
               onChange={(e) => {
                 setUsername(e.target.value);
               }}
-              name='email'
+              name="email"
             />
           </FormControl>
         </div>
 
         <div>
-          <FormControl margin='normal' required fullWidth>
-            <InputLabel htmlFor='email'>Password</InputLabel>
+          <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="email">Password</InputLabel>
             <Input
               type={values.showPassword ? "text" : "password"}
               value={password}
-
               onChange={(e) => {
                 setPassword(e.target.value);
                 handlePasswordChange("password");
-
               }}
               endAdornment={
                 <InputAdornment position="end">
@@ -234,16 +229,16 @@ const Login = () => {
                   </IconButton>
                 </InputAdornment>
               }
-              name='Password'
+              name="Password"
             />
           </FormControl>
         </div>
 
         <Button
           fullWidth
-          variant='contained'
-          color='primary'
-          type='submit'
+          variant="contained"
+          color="primary"
+          type="submit"
           style={styles.submit}
         >
           {" "}
@@ -252,12 +247,12 @@ const Login = () => {
 
         <div style={{ textAlign: "center" }}>
           <Typography
-            variant='subtitle1'
+            variant="subtitle1"
             style={{ marginTop: 20 }}
             gutterBottom
           >
             Don't have an account ?{" "}
-            <Link style={{ textDecoration: "none" }} to='/register'>
+            <Link style={{ textDecoration: "none" }} to="/register">
               Register
             </Link>
           </Typography>
@@ -266,10 +261,6 @@ const Login = () => {
     </Paper>
   );
 
-
-
-
-
   return (
     <div>
       <>
@@ -277,7 +268,6 @@ const Login = () => {
         <Success message={successMessage} />
         {/* <Error message={invalidNote} /> */}
         {LoginForm()}
-        {console.log("user ", user)}
         <br />
       </>
     </div>
